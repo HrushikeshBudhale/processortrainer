@@ -40,7 +40,7 @@ $RECYCLE.BIN/
 *.lnk
 
 # folders
-ArdSrc/build
+ArdSrc/build/
 
 # End of https://www.gitignore.io/api/visualstudiocode,windows
 
