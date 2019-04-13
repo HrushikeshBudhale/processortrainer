@@ -4,10 +4,12 @@
 #define CLKPIN 1
 #define MODEPIN 2
 #define FREQPIN 36
+#define PROG_LEN 20 // Program memory size
 
 long int clkDelay = 500000;
 
-String inString = ""; // a String to hold incoming data
+char inString[] = "FFFFFFFF\0"; // char array to hold incoming data
+char bufPos = 0;				// holds index of char in inString
 
 String outString = ""; // a String to hold outgoing data
 
@@ -18,19 +20,23 @@ boolean clkMode = false; // false if MODEPIN is set to EXT_CLK
 hw_timer_t *sampleTimer = NULL;
 hw_timer_t *evaluateTimer = NULL;
 
-unsigned long int prog_data[20]; // 32 bit
+unsigned long int prog_data[PROG_LEN]; // 32 bit
+
+//###################### main Functions ############################
 
 void setup()
 {
 	Serial.begin(115200);
-	while (Serial.available() <= 0)
-		;
 
 	setInterrupts();
 	setTimers();
 }
 
-void loop() {}
+void loop()
+{
+	if (Serial.available())
+		handleSerial();
+}
 
 //###################### Timer Functions ############################
 
@@ -120,7 +126,7 @@ void buttonISR()
 
 //###################### serial Functions ############################
 
-void serialEvent()
+void handleSerial()
 {
 	char inChar = (char)Serial.read();
 	if (doneUpload)
@@ -131,17 +137,19 @@ void serialEvent()
 			Serial.println("Starting Upload");
 			doneUpload = false;
 			break;
+
 		case 'e': // execute next instruction
 			Serial.println("evaluating");
 			if (clkMode == EXT_CLK)
 			{
 				// evaluate();
-				Serial.println("button eval");
+				Serial.println("serial eval");
 			}
 			break;
+
 		case 'r': // Reset memories
 			Serial.println("Resetting");
-			// todo: Add reset function (include doneUpload = true)
+			// reset();
 			break;
 		}
 	}
@@ -149,25 +157,47 @@ void serialEvent()
 	{
 		switch (inChar)
 		{
-		case 'd':
+		case 'd':		  // done uploading
 			uploadPC = 0; // reset to 0
-			// todo: Add reset function (include doneUpload = true)
-			doneUpload = true;
+			bufPos = 0;
 			Serial.println("Upload Complete");
+			// reset();
+			displayProgram();
+			doneUpload = true;
 			break;
 
-		case ',':
+		case ',': // instruction complete
+			inString[8] = '\0';
+			prog_data[uploadPC] = strtoul(inString, (char **)'\0', 16);
 			Serial.print("Received: ");
-			Serial.println(inString);
-			// todo: convert hex string to long int
-			inString = ""; // empty string
-			uploadPC++;	// increment to store at next position
+			Serial.println(prog_data[uploadPC]);
+			uploadPC++; // increment to store at next position
+			bufPos = 0;
 			break;
 
 		default:
-			inString += inChar; // append number to string
-			Serial.println("appending");
+			inString[bufPos++] = inChar; // append number to string
 			break;
 		}
+	}
+}
+
+/* void reset()
+{
+	// todo: PC = 0;
+	// todo: reset mem and reg
+} */
+
+// testing function
+void displayProgram()
+{
+	for (int j = 0; j < 4; j++)
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			Serial.print("\t");
+			Serial.print(prog_data[i + (j * 8)]);
+		}
+		Serial.println();
 	}
 }

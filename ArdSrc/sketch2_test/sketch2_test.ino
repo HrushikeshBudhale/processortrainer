@@ -2,9 +2,14 @@
 
 #define DEVICES 4
 #define EXT_CLK 1
+
 #define CLKPIN 1
 #define MODEPIN 2
-#define FREQPIN 3
+#define FREQPIN 36
+
+#define REG_LEN 32  // register file size
+#define PROG_LEN 20 // Program memory size
+#define MEM_LEN 20  // data memory size
 
 // control outputs positions
 #define ALUFN 0x0b
@@ -25,23 +30,23 @@ LedControl lc = LedControl(12, 11, 10, DEVICES); // For arduino
 //########################## Global variables ##############################
 
 // General variables
-String inputString = "";				// a String to hold incoming data
+String inputString = "";		// a String to hold incoming data
 boolean stringComplete = false; // whether the string is complete
 boolean codeReady = false;
 boolean clkMode = false; // false if MODEPIN is set to EXT_CLK
 
 // Data Containers
-unsigned long int prog_data[20]; // 32 bit
-unsigned long int reg_file[32];
-unsigned long int data_mem[20];
+unsigned long int prog_data[PROG_LEN]; // 32 bit
+unsigned long int reg_file[REG_LEN];
+unsigned long int data_mem[MEM_LEN];
 
 // Address Containers
-unsigned char PC = 0;			//
+unsigned char PC = 0;	 //
 unsigned char opcode = 0; //
-unsigned char Rc = 0;			// 8 bit
-unsigned char Ra = 0;			//
-unsigned char Rb = 0;			//
-unsigned char z = 0;			//
+unsigned char Rc = 0;	 // 8 bit
+unsigned char Ra = 0;	 //
+unsigned char Rb = 0;	 //
+unsigned char z = 0;	  //
 unsigned int literal = 0; // 16 bit
 int clkDelay = 0;
 
@@ -151,11 +156,11 @@ void setClkDelay(void)
 void fetch(void)
 {
 	Serial.println("In fetch");
-	opcode = (prog_data[PC] >> 26);			 // bits 31 - 26
+	opcode = (prog_data[PC] >> 26);		 // bits 31 - 26
 	Rc = ((prog_data[PC] >> 21) & 0x1f); // bits 25 - 21
 	Ra = ((prog_data[PC] >> 16) & 0x1f); // bits 20 - 16
 	Rb = ((prog_data[PC] >> 11) & 0x1f); // bits 15 - 11
-	literal = (prog_data[PC] & 0xffff);	// bits 15 - 0
+	literal = (prog_data[PC] & 0xffff);  // bits 15 - 0
 	Serial.print("opcode= ");
 	Serial.print(opcode);
 	Serial.print(", Rc= ");
