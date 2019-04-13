@@ -6,6 +6,6 @@
   "hardwareFolders": "C:\\Program Files (x86)\\Arduino\\hardware,C:\\Users\\HRUSHIKESH\\AppData\\Local\\Arduino15\\packages",
   "otherLibrariesFolders": "C:\\Users\\HRUSHIKESH\\Documents\\Arduino\\libraries",
   "runtime.ide.version": "10809",
-  "sketchLocation": "c:\\Users\\HRUSHIKESH\\Desktop\\proj\\ArdSrc\\hwTimer_test\\hwTimer_test.ino",
+  "sketchLocation": "c:\\Users\\HRUSHIKESH\\Desktop\\proj\\ArdSrc\\serial2LCD_hw\\serial2LCD_hw.ino",
   "toolsFolders": "C:\\Program Files (x86)\\Arduino\\tools-builder,C:\\Program Files (x86)\\Arduino\\hardware\\tools\\avr,C:\\Users\\HRUSHIKESH\\AppData\\Local\\Arduino15\\packages"
 }

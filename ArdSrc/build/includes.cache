@@ -10,7 +10,17 @@
     "Includepath": "C:\\Users\\HRUSHIKESH\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\1.0.1\\variants\\esp32"
   },
   {
-    "Sourcefile": "c:\\Users\\HRUSHIKESH\\Desktop\\proj\\ArdSrc\\build\\sketch\\hwTimer_test.ino.cpp",
+    "Sourcefile": "c:\\Users\\HRUSHIKESH\\Desktop\\proj\\ArdSrc\\build\\sketch\\serial2LCD_hw.ino.cpp",
+    "Include": "LedControl.h",
+    "Includepath": "C:\\Users\\HRUSHIKESH\\Documents\\Arduino\\libraries\\LedControl\\src"
+  },
+  {
+    "Sourcefile": "c:\\Users\\HRUSHIKESH\\Desktop\\proj\\ArdSrc\\build\\sketch\\serial2LCD_hw.ino.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "C:\\Users\\HRUSHIKESH\\Documents\\Arduino\\libraries\\LedControl\\src\\LedControl.cpp",
     "Include": "",
     "Includepath": ""
   }
