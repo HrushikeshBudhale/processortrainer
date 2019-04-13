@@ -1,0 +1,8 @@
+verilog work "Verilog/REGFILE.v"
+verilog work "Verilog/PC.v"
+verilog work "Verilog/MUX.v"
+verilog work "Verilog/Beta_CTL.v"
+verilog work "Verilog/Beata_ALU.v"
+verilog work "Verilog/BETA_top.v"
+verilog work "TB_LD_ST.v"
+verilog work "E:/Xilinx/14.2/ISE_DS/ISE//verilog/src/glbl.v"

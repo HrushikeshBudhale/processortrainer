@@ -1,0 +1,10 @@
+set -loop_iteration_limit 1000
+run
+-ifn counterdisplay.prj
+-top counterdisplay
+-p xc6slx45csg324-3
+-ofn counterdisplay.ngc
+-opt_mode speed
+-opt_level 1
+-lc auto
+-bufg 16

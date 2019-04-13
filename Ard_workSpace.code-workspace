@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "ArdSrc"
+		},
+		{
+			"name": "proj",
+			"path": "."
+		}
+	],
+	"settings": {}
+}

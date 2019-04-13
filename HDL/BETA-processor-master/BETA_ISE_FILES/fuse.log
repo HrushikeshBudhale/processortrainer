@@ -1,0 +1,48 @@
+Running: C:\Xilinx\14.2\ISE_DS\ISE\bin\nt64\unwrapped\fuse.exe -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -lib secureip -o C:/Users/HRUSHIKESH/Desktop/proj/BETA-processor-master/BETA_ISE_FILES/TB_BETA_isim_beh.exe -prj C:/Users/HRUSHIKESH/Desktop/proj/BETA-processor-master/BETA_ISE_FILES/TB_BETA_beh.prj work.TB_BETA work.glbl 
+ISim P.28xd (signature 0xa0883be4)
+Number of CPUs detected in this system: 4
+Turning on mult-threading, number of parallel sub-compilation jobs: 8 
+Determining compilation order of HDL files
+Analyzing Verilog file "C:/Users/HRUSHIKESH/Desktop/proj/BETA-processor-master/BETA_ISE_FILES/SHIFT.v" into library work
+Analyzing Verilog file "C:/Users/HRUSHIKESH/Desktop/proj/BETA-processor-master/BETA_ISE_FILES/ipcore_dir/DRAM32x32.v" into library work
+Analyzing Verilog file "C:/Users/HRUSHIKESH/Desktop/proj/BETA-processor-master/BETA_ISE_FILES/CMP.v" into library work
+Analyzing Verilog file "C:/Users/HRUSHIKESH/Desktop/proj/BETA-processor-master/BETA_ISE_FILES/BOOL.v" into library work
+WARNING:HDLCompiler:248 - "C:/Users/HRUSHIKESH/Desktop/proj/BETA-processor-master/BETA_ISE_FILES/BOOL.v" Line 31: Block identifier is required on this block
+Analyzing Verilog file "C:/Users/HRUSHIKESH/Desktop/proj/BETA-processor-master/BETA_ISE_FILES/ARITH.v" into library work
+Analyzing Verilog file "C:/Users/HRUSHIKESH/Desktop/proj/BETA-processor-master/BETA_ISE_FILES/REGFILE.v" into library work
+Analyzing Verilog file "C:/Users/HRUSHIKESH/Desktop/proj/BETA-processor-master/BETA_ISE_FILES/PC.v" into library work
+Analyzing Verilog file "C:/Users/HRUSHIKESH/Desktop/proj/BETA-processor-master/BETA_ISE_FILES/CTL.v" into library work
+Analyzing Verilog file "C:/Users/HRUSHIKESH/Desktop/proj/BETA-processor-master/BETA_ISE_FILES/ALU.v" into library work
+Analyzing Verilog file "C:/Users/HRUSHIKESH/Desktop/proj/BETA-processor-master/BETA_ISE_FILES/ipcore_dir/MAIN_DIST_MEM.v" into library work
+Analyzing Verilog file "C:/Users/HRUSHIKESH/Desktop/proj/BETA-processor-master/BETA_ISE_FILES/BETA_CORE.v" into library work
+Analyzing Verilog file "C:/Users/HRUSHIKESH/Desktop/proj/BETA-processor-master/BETA_ISE_FILES/BETA_TOP.v" into library work
+Analyzing Verilog file "C:/Users/HRUSHIKESH/Desktop/proj/BETA-processor-master/BETA_ISE_FILES/TB_BETA.v" into library work
+Analyzing Verilog file "C:/Xilinx/14.2/ISE_DS/ISE//verilog/src/glbl.v" into library work
+Starting static elaboration
+WARNING:HDLCompiler:189 - "C:/Users/HRUSHIKESH/Desktop/proj/BETA-processor-master/BETA_ISE_FILES/BETA_TOP.v" Line 51: Size mismatch in connection of port <dpra>. Formal port size is 10-bit while actual signal size is 11-bit.
+WARNING:HDLCompiler:189 - "C:/Users/HRUSHIKESH/Desktop/proj/BETA-processor-master/BETA_ISE_FILES/BETA_TOP.v" Line 71: Size mismatch in connection of port <dpra>. Formal port size is 10-bit while actual signal size is 11-bit.
+WARNING:HDLCompiler:1016 - "C:/Users/HRUSHIKESH/Desktop/proj/BETA-processor-master/BETA_ISE_FILES/BETA_CORE.v" Line 94: Port Z is not connected to this instance
+Completed static elaboration
+Compiling module DIST_MEM_GEN_V7_2(C_FAMILY="spar...
+Compiling module MAIN_DIST_MEM
+Compiling module CTL
+Compiling module DIST_MEM_GEN_V7_2(C_FAMILY="spar...
+Compiling module DRAM32x32
+Compiling module REGFILE
+Compiling module PC
+Compiling module SHIFT
+Compiling module MUX4
+Compiling module BOOL
+Compiling module ARITH
+Compiling module CMP
+Compiling module ALU
+Compiling module BETA_CORE
+Compiling module BETA_TOP
+Compiling module TB_BETA
+Compiling module glbl
+Time Resolution for simulation is 1ps.
+Waiting for 10 sub-compilation(s) to finish...
+Compiled 17 Verilog Units
+Built simulation executable C:/Users/HRUSHIKESH/Desktop/proj/BETA-processor-master/BETA_ISE_FILES/TB_BETA_isim_beh.exe
+Fuse Memory Usage: 49868 KB
+Fuse CPU Usage: 1000 ms

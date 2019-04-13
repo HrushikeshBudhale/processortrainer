@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=C:\Users\HRUSHIKESH\Desktop\EPD2\hardware_test\hw\counterdisplay.ncd
+OUTFILE=C:\Users\HRUSHIKESH\Desktop\EPD2\hardware_test\hw\counterdisplay.bit
+FAMILY=Spartan6
+PART=xc6slx45-3csg324
+WORKINGDIR=C:\Users\HRUSHIKESH\Desktop\EPD2\hardware_test\hw
+LICENSE=WebPack
+USER_INFO=__0_0_0

@@ -1,0 +1,3 @@
+verilog work "sort_address.v"
+verilog work "addr_mux_tb.v"
+verilog work "C:/Xilinx/14.2/ISE_DS/ISE//verilog/src/glbl.v"

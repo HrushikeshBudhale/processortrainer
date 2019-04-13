@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <title>Processor control</title>
+</head>
+
+<body style="background-color: gainsboro">
+  <nav class="navbar shadow navbar-light bg-warning">
+    <span id="tt" class="navbar-brand mb-0 h1">Processor control</span>
+  </nav>
+  <div class="container" style="max-width: 90%;">
+    <div class="row p-2" style="height: 620px;">
+      <div class="col col-lg-2">
+        <form method="POST" action="/upload">
+          <div class="row row-lg-11">
+            <div class="col mini-box">
+              <div class="form-group mt-3">
+                <h5>Enter code</h5>
+                <textarea class="form-control shadow Acode" id="Textarea1" rows="16" style="max-height: 492px;"
+                  required></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row-1">
+            <button type="submit" class="btn btn-primary btn-lg shadow btn-block">Upload</button>
+            <a id="resetBtn" class="btn btn-secondary btn-lg shadow btn-block mt-2" href="/reset"
+              role="button">Reset</a>
+          </div>
+        </form>
+      </div>
+
+      <div class="col col-lg-2 big-box mt-3">
+        <h5>Program data</h5>
+        <ul id="prog" class="list-group shadow text-center"
+          style="max-height: 492px; margin-bottom: 10px; overflow:scroll; -webkit-overflow-scrolling: touch;">
+          {% for instr in instrList %}
+          <li class="list-group-item">{{ instr }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="col col-lg-8">
+        <div class="row h-50">
+          <div class="col mini-box">
+            <div class="card shadow text-white bg-dark w-100 mt-2">
+              <div class="card-header">Register File</div>
+              <div class="card-body">
+                <div class="table-responsive-lg">
+                  <table class="table table-striped text-center table-dark">
+                    <tbody id="reg">
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row h-50">
+          <div class="col">
+            <div class="card shadow text-white bg-secondary mb-3 w-100 mt-3">
+              <div class="card-header">Code Memory</div>
+              <div class="card-body">
+                <div class="table-responsive-lg">
+                  <table class="table text-white text-center table-sm">
+                    <tbody id="mem">
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <!-- socket io -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+  <!-- <script src="js/bootstrap.min.js"></script> -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  <script>
+
+    function reset() {
+      // set reg values in for loop
+      $('#reg').html('');
+      $('#mem').html('');
+
+      $.each(new Array(4), function () {
+        $('#reg').append("<tr class='myreg'>");
+        $('#mem').append("<tr class='mymem'>");
+      });
+
+      // set mem values in for loop
+      $.each(new Array(8), function () {
+        $('.myreg').append('<td>00000</td>');
+        $('.mymem').append('<td>00000</td>');
+      });
+    };
+
+    $(document).ready(function () {
+      var socket = io.connect('http://localhost:5000/')
+      var codeReady = false;
+
+      // Request data update every 0.5 sec
+      setInterval(function () {
+        socket.emit('getUpdate', '');
+      }, 500);
+
+      // broadcast a message
+      socket.on('connect', function () {
+        console.log("connected js")
+        reset();
+        // Notify server
+        socket.emit('connect_event', {
+          data: "User Connected"
+        });
+      });
+
+      var form = $('form').on('submit', function (event) {
+        event.preventDefault();
+        var message = $('textarea.Acode').val();
+        // console.log(message)
+        socket.emit('upload', { message });
+        $('textarea.Acode').val('').focus();
+      });
+
+      // clear page on reset
+      $('#resetBtn').on('click', function () {
+        event.preventDefault();
+        reset();
+      });
+
+      // set program data on successful upload 
+      socket.on('uploadStat', function (msg) {
+        console.log(msg);
+        if (msg === 'error') {
+          alert("Upload Fail!!");
+        }
+        else {
+          alert("Code uploaded successfully.")
+          msg = JSON.parse(msg);
+          $.each(msg.program, function (i, val) {
+            $('#prog').append('<li class="list-group-item">' + val + '</li>');
+          });
+          $('#prog li').eq(0).addClass("active");
+          codeReady = true;
+        }
+      });
+
+      // Update page
+      socket.on('update', function (msg) {
+        console.log(msg);
+        msg = JSON.parse(msg);
+        if (codeReady == true) {
+
+          // Sets PC
+          // Disable previous active element
+          $('#prog').children('.active').toggleClass('active');
+          // Activate new elemet
+          $('#prog li').eq(msg.pc).addClass("active");
+
+
+          // update regfile
+          if (Object.keys(msg.reg).length != 0) {
+            var f2 = $('#reg').children('.myreg').children();
+
+            // Clear previous colored cells
+            $(f2).css({ 'background-color': '' });
+
+            $.each(msg.reg, function (index, data) {
+              $(f2[index]).html(data);
+              $(f2[index]).css("background-color", "tomato");
+            });
+          }
+
+          // update Data Memory
+          if (Object.keys(msg.mem).length != 0) {
+            var f2 = $('#mem').children('.mymem').children();
+
+            // Clear previous colored cells
+            $(f2).css({ 'background-color': '' });
+
+            $.each(msg.mem, function (index, data) {
+              $(f2[index]).html(data);
+              $(f2[index]).css("background-color", "tomato");
+            });
+          }
+
+        }
+      });
+
+    });
+  </script>
+</body>
+
+</html>

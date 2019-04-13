@@ -1,0 +1,7 @@
+verilog work "UART_tx.v"
+verilog work "UART_rx.v"
+verilog work "UART_baudrate_generator.v"
+verilog work "conv8and32.v"
+verilog work "TOP.v"
+verilog work "top_tb.v"
+verilog work "C:/Xilinx/14.2/ISE_DS/ISE//verilog/src/glbl.v"

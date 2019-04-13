@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "C:/Users/HRUSHIKESH/Desktop/proj/sortAddr_32To8_uart2/top_tb_isim_beh.exe" -prj "C:/Users/HRUSHIKESH/Desktop/proj/sortAddr_32To8_uart2/top_tb_beh.prj" "work.top_tb" "work.glbl" 

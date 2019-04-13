@@ -1,0 +1,1 @@
+xst -intstyle ise -filter "E:/EPD2FINAL/BETA_PROCESSOR_V2/iseconfig/filter.filter" -ifn "E:/EPD2FINAL/BETA_PROCESSOR_V2/CTL.xst" -ofn "E:/EPD2FINAL/BETA_PROCESSOR_V2/CTL.syr" 

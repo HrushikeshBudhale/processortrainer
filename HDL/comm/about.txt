@@ -1,0 +1,1 @@
+This project contains code for implementing UART protocol in spartan 6 board.

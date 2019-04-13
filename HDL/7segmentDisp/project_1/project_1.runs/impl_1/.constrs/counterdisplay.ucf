@@ -1,0 +1,10 @@
+NET "button_in" LOC = F5;
+NET "clk" LOC = L15;
+NET "n_reset" LOC = T15;
+NET "leda" LOC = N12;
+NET "ledb" LOC = P16;
+NET "ledc" LOC = D4;
+NET "ledd" LOC = M13;
+NET "lede" LOC = L14;
+NET "ledf" LOC = N14;
+NET "ledg" LOC = M14;

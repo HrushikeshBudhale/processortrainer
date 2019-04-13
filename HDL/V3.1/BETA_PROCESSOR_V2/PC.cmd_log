@@ -1,0 +1,3 @@
+xst -intstyle ise -filter "E:/EPD2FINAL/BETA_PROCESSOR/iseconfig/filter.filter" -ifn "E:/EPD2FINAL/BETA_PROCESSOR/PC.xst" -ofn "E:/EPD2FINAL/BETA_PROCESSOR/PC.syr" 
+xst -intstyle ise -filter "E:/EPD2FINAL/BETA_PROCESSOR/iseconfig/filter.filter" -ifn "E:/EPD2FINAL/BETA_PROCESSOR/PC.xst" -ofn "E:/EPD2FINAL/BETA_PROCESSOR/PC.syr" 
+xst -intstyle ise -filter "E:/EPD2FINAL/BETA_PROCESSOR/iseconfig/filter.filter" -ifn "E:/EPD2FINAL/BETA_PROCESSOR/PC.xst" -ofn "E:/EPD2FINAL/BETA_PROCESSOR/PC.syr" 

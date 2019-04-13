@@ -1,0 +1,28 @@
+Command line:
+   address_multiplexer_isim_beh.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  51023
+
+Thu Feb 07 23:54:04 2019
+
+
+ Elaboration Time: 0.046875 sec
+
+ Current Memory Usage: 5324.81 Meg
+
+ Total Signals          : 25
+ Total Nets             : 324
+ Total Signal Drivers   : 10
+ Total Blocks           : 2
+ Total Primitive Blocks : 2
+ Total Processes        : 14
+ Total Traceable Variables  : 26
+ Total Scalar Nets and Variables : 457
+
+ Total Simulation Time: 0.046875 sec
+
+ Current Memory Usage: 5324.81 Meg
+
+Thu Feb 07 23:54:06 2019
+

@@ -1,0 +1,17 @@
+//! **************************************************************************
+// Written by: Map P.28xd on Sat Feb 02 11:39:17 2019
+//! **************************************************************************
+
+SCHEMATIC START;
+COMP "clk" LOCATE = SITE "L15" LEVEL 1;
+COMP "button_in" LOCATE = SITE "F5" LEVEL 1;
+COMP "leda" LOCATE = SITE "N12" LEVEL 1;
+COMP "ledb" LOCATE = SITE "P16" LEVEL 1;
+COMP "ledc" LOCATE = SITE "D4" LEVEL 1;
+COMP "ledd" LOCATE = SITE "M13" LEVEL 1;
+COMP "lede" LOCATE = SITE "L14" LEVEL 1;
+COMP "ledf" LOCATE = SITE "N14" LEVEL 1;
+COMP "ledg" LOCATE = SITE "M14" LEVEL 1;
+COMP "n_reset" LOCATE = SITE "T15" LEVEL 1;
+SCHEMATIC END;
+

@@ -1,0 +1,6 @@
+verilog isim_temp "UART_tx.v"
+verilog isim_temp "UART_rx.v"
+verilog isim_temp "UART_baudrate_generator.v"
+verilog isim_temp "conv8and32.v"
+verilog isim_temp "TOP.v"
+verilog isim_temp "C:/Xilinx/14.2/ISE_DS/ISE//verilog/src/glbl.v"

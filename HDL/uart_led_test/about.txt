@@ -1,0 +1,7 @@
+This project is designed to test uart transmission protocol.
+
+When programmed on spartan 6 board,
+7 leds on board shows seven-segment digit value representing 0.
+For every middle key-press count increments by one.
+
+LED bit pattern is transmitted through UART.

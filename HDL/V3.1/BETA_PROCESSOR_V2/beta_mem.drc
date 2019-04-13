@@ -1,0 +1,39 @@
+Release 14.2 Drc P.28xd (nt64)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+Wed Jan 23 14:19:04 2019
+
+drc -z Beta_MEM.ncd Beta_MEM.pcf
+
+WARNING:PhysDesignRules:367 - The signal
+   <core/RF/B_DIST/Mram_reg_file2_RAMD_D1_O> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <core/RF/B_DIST/Mram_reg_file3_RAMD_D1_O> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <core/RF/B_DIST/Mram_reg_file4_RAMD_D1_O> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <core/RF/B_DIST/Mram_reg_file1_RAMD_D1_O> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <core/RF/A_DIST/Mram_reg_file2_RAMD_D1_O> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <core/RF/B_DIST/Mram_reg_file5_RAMD_D1_O> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <core/RF/A_DIST/Mram_reg_file3_RAMD_D1_O> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <core/RF/A_DIST/Mram_reg_file5_RAMD_D1_O> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <core/RF/A_DIST/Mram_reg_file4_RAMD_D1_O> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <core/RF/A_DIST/Mram_reg_file1_RAMD_D1_O> is incomplete. The signal does not
+   drive any load pins in the design.
+DRC detected 0 errors and 10 warnings.  Please see the previously displayed
+individual error or warning messages for more details.

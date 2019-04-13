@@ -1,0 +1,364 @@
+Release 14.2 - xst P.28xd (nt64)
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.11 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.11 secs
+ 
+--> Reading design: TOP.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Parsing
+  3) HDL Elaboration
+  4) HDL Synthesis
+       4.1) HDL Synthesis Report
+  5) Advanced HDL Synthesis
+       5.1) Advanced HDL Synthesis Report
+  6) Low Level Synthesis
+  7) Partition Report
+  8) Design Summary
+       8.1) Primitive and Black Box Usage
+       8.2) Device utilization summary
+       8.3) Partition Resource Summary
+       8.4) Timing Report
+            8.4.1) Clock Information
+            8.4.2) Asynchronous Control Signals Information
+            8.4.3) Timing Summary
+            8.4.4) Timing Details
+            8.4.5) Cross Clock Domains Report
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "TOP.prj"
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "TOP"
+Output Format                      : NGC
+Target Device                      : xc6slx45-3-csg324
+
+---- Source Options
+Top Module Name                    : TOP
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Shift Register Extraction          : YES
+ROM Style                          : Auto
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Shift Register Minimum Size        : 2
+Use DSP Block                      : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+LUT Combining                      : Auto
+Reduce Control Sets                : Auto
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 16
+Register Duplication               : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Auto
+Use Synchronous Set                : Auto
+Use Synchronous Reset              : Auto
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Power Reduction                    : NO
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+DSP48 Utilization Ratio            : 100
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Parsing                                  *
+=========================================================================
+Analyzing Verilog file "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\UART_tx.v" into library work
+Parsing module <UART_rs232_tx>.
+Analyzing Verilog file "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\UART_rx.v" into library work
+Parsing module <UART_rs232_rx>.
+Analyzing Verilog file "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\UART_baudrate_generator.v" into library work
+Parsing module <UART_BaudRate_generator>.
+Analyzing Verilog file "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\sort_address.v" into library work
+Parsing module <address_multiplexer>.
+Analyzing Verilog file "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\conv8and32.v" into library work
+Parsing module <data8and32>.
+Analyzing Verilog file "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\TOP.v" into library work
+Parsing module <TOP>.
+
+=========================================================================
+*                            HDL Elaboration                            *
+=========================================================================
+
+Elaborating module <TOP>.
+
+Elaborating module <UART_rs232_rx>.
+WARNING:HDLCompiler:413 - "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\UART_rx.v" Line 104: Result of 5-bit expression is truncated to fit in 4-bit target.
+WARNING:HDLCompiler:413 - "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\UART_rx.v" Line 115: Result of 6-bit expression is truncated to fit in 5-bit target.
+ERROR:HDLCompiler:1401 - "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\UART_rx.v" Line 30: Signal RxDone in unit UART_rs232_rx is connected to following multiple drivers:
+Driver 0: output signal RxDone of instance Flip-Flop (RxDone).
+Driver 1: output signal RxDone of instance Latch (_i000032).
+Driver 0: output signal RxData[7] of instance Flip-flop (RxData).
+Driver 1: output signal RxData[7] of instance Latch (RxData[7]).
+Driver 0: output signal RxData[6] of instance Flip-flop (RxData).
+Driver 1: output signal RxData[6] of instance Latch (RxData[6]).
+Driver 0: output signal RxData[5] of instance Flip-flop (RxData).
+Driver 1: output signal RxData[5] of instance Latch (RxData[5]).
+Driver 0: output signal RxData[4] of instance Flip-flop (RxData).
+Driver 1: output signal RxData[4] of instance Latch (RxData[4]).
+Driver 0: output signal RxData[3] of instance Flip-flop (RxData).
+Driver 1: output signal RxData[3] of instance Latch (RxData[3]).
+Driver 0: output signal RxData[2] of instance Flip-flop (RxData).
+Driver 1: output signal RxData[2] of instance Latch (RxData[2]).
+Driver 0: output signal RxData[1] of instance Flip-flop (RxData).
+Driver 1: output signal RxData[1] of instance Latch (RxData[1]).
+Driver 0: output signal RxData[0] of instance Flip-flop (RxData).
+Driver 1: output signal RxData[0] of instance Latch (RxData[0]).
+Module UART_rs232_rx remains a blackbox, due to errors in its contents
+WARNING:HDLCompiler:1499 - "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\UART_rx.v" Line 1: Empty module <UART_rs232_rx> remains a black box.
+
+Elaborating module <UART_rs232_tx>.
+WARNING:HDLCompiler:413 - "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\UART_tx.v" Line 107: Result of 5-bit expression is truncated to fit in 4-bit target.
+WARNING:HDLCompiler:413 - "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\UART_tx.v" Line 126: Result of 6-bit expression is truncated to fit in 5-bit target.
+
+Elaborating module <UART_BaudRate_generator>.
+
+Elaborating module <data8and32>.
+WARNING:HDLCompiler:91 - "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\conv8and32.v" Line 66: Signal <tx_en> missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
+WARNING:HDLCompiler:91 - "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\conv8and32.v" Line 68: Signal <cnt> missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
+WARNING:HDLCompiler:91 - "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\conv8and32.v" Line 70: Signal <cnt> missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
+WARNING:HDLCompiler:413 - "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\conv8and32.v" Line 70: Result of 9-bit expression is truncated to fit in 8-bit target.
+ERROR:HDLCompiler:1401 - "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\conv8and32.v" Line 22: Signal out_8[7] in unit data8and32 is connected to following multiple drivers:
+Driver 0: output signal out_8[7] of instance Flip-flop (out_8).
+Driver 1: output signal out_8[7] of instance Flip-flop (_i000020).
+Driver 0: output signal out_8[6] of instance Flip-flop (out_8).
+Driver 1: output signal out_8[6] of instance Flip-flop (_i000020).
+Driver 0: output signal out_8[5] of instance Flip-flop (out_8).
+Driver 1: output signal out_8[5] of instance Flip-flop (_i000020).
+Driver 0: output signal out_8[4] of instance Flip-flop (out_8).
+Driver 1: output signal out_8[4] of instance Flip-flop (_i000020).
+Driver 0: output signal out_8[3] of instance Flip-flop (out_8).
+Driver 1: output signal out_8[3] of instance Flip-flop (_i000020).
+Driver 0: output signal out_8[2] of instance Flip-flop (out_8).
+Driver 1: output signal out_8[2] of instance Flip-flop (_i000020).
+Driver 0: output signal out_8[1] of instance Flip-flop (out_8).
+Driver 1: output signal out_8[1] of instance Flip-flop (_i000020).
+Driver 0: output signal out_8[0] of instance Flip-flop (out_8).
+Driver 1: output signal out_8[0] of instance Flip-flop (_i000020).
+Driver 0: output signal tx_en of instance Flip-Flop (tx_en).
+Driver 1: output signal tx_en of instance Latch (_i000030).
+Driver 2: output signal tx_en of instance Latch (_i000027).
+Driver 3: output signal tx_en of instance Flip-Flop (_i000022).
+Driver 0: output signal cnt[7] of instance Latch (cnt[7]).
+Driver 1: output signal cnt[7] of instance Flip-flop (cnt).
+Driver 0: output signal cnt[6] of instance Latch (cnt[6]).
+Driver 1: output signal cnt[6] of instance Flip-flop (cnt).
+Driver 0: output signal cnt[5] of instance Latch (cnt[5]).
+Driver 1: output signal cnt[5] of instance Flip-flop (cnt).
+Driver 0: output signal cnt[4] of instance Latch (cnt[4]).
+Driver 1: output signal cnt[4] of instance Flip-flop (cnt).
+Driver 0: output signal cnt[3] of instance Latch (cnt[3]).
+Driver 1: output signal cnt[3] of instance Flip-flop (cnt).
+Driver 0: output signal cnt[2] of instance Latch (cnt[2]).
+Driver 1: output signal cnt[2] of instance Flip-flop (cnt).
+Driver 0: output signal cnt[1] of instance Latch (cnt[1]).
+Driver 1: output signal cnt[1] of instance Flip-flop (cnt).
+Driver 0: output signal cnt[0] of instance Latch (cnt[0]).
+Driver 1: output signal cnt[0] of instance Flip-flop (cnt).
+Driver 0: output signal tx_state[2] of instance Flip-flop (tx_state).
+Driver 1: output signal tx_state[2] of instance Flip-flop (_i000018).
+Driver 0: output signal tx_state[1] of instance Flip-flop (tx_state).
+Driver 1: output signal tx_state[1] of instance Flip-flop (_i000018).
+Driver 0: output signal tx_state[0] of instance Flip-flop (tx_state).
+Driver 1: output signal tx_state[0] of instance Flip-flop (_i000018).
+Driver 0: output signal sent of instance Flip-Flop (sent).
+Driver 1: output signal sent of instance Flip-Flop (_i000021).
+Module data8and32 remains a blackbox, due to errors in its contents
+WARNING:HDLCompiler:1499 - "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\conv8and32.v" Line 2: Empty module <data8and32> remains a black box.
+
+Elaborating module <address_multiplexer>.
+WARNING:HDLCompiler:91 - "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\sort_address.v" Line 93: Signal <read_wait> missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
+WARNING:HDLCompiler:91 - "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\sort_address.v" Line 95: Signal <wait_cnt> missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
+WARNING:HDLCompiler:91 - "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\sort_address.v" Line 97: Signal <addr_in_8> missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
+WARNING:HDLCompiler:91 - "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\sort_address.v" Line 98: Signal <data_rf_32> missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
+WARNING:HDLCompiler:91 - "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\sort_address.v" Line 99: Signal <addr_in_8> missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
+WARNING:HDLCompiler:91 - "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\sort_address.v" Line 100: Signal <data_dm_32> missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
+WARNING:HDLCompiler:91 - "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\sort_address.v" Line 104: Signal <wait_cnt> missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
+WARNING:HDLCompiler:413 - "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\sort_address.v" Line 104: Result of 4-bit expression is truncated to fit in 3-bit target.
+WARNING:HDLCompiler:91 - "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\sort_address.v" Line 111: Signal <data_rdy> missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
+WARNING:HDLCompiler:91 - "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\sort_address.v" Line 113: Signal <wait_cnt> missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
+WARNING:HDLCompiler:91 - "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\sort_address.v" Line 115: Signal <wait_cnt> missing in the sensitivity list is added for synthesis purposes. HDL and post-synthesis simulations may differ as a result.
+WARNING:HDLCompiler:413 - "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\sort_address.v" Line 115: Result of 4-bit expression is truncated to fit in 3-bit target.
+ERROR:HDLCompiler:1401 - "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\sort_address.v" Line 43: Signal addr_rf_5[4] in unit address_multiplexer is connected to following multiple drivers:
+Driver 0: output signal addr_rf_5[4] of instance Flip-flop (addr_rf_5).
+Driver 1: output signal addr_rf_5[4] of instance Flip-flop (_i000018).
+Driver 0: output signal addr_rf_5[3] of instance Flip-flop (addr_rf_5).
+Driver 1: output signal addr_rf_5[3] of instance Flip-flop (_i000018).
+Driver 0: output signal addr_rf_5[2] of instance Flip-flop (addr_rf_5).
+Driver 1: output signal addr_rf_5[2] of instance Flip-flop (_i000018).
+Driver 0: output signal addr_rf_5[1] of instance Flip-flop (addr_rf_5).
+Driver 1: output signal addr_rf_5[1] of instance Flip-flop (_i000018).
+Driver 0: output signal addr_rf_5[0] of instance Flip-flop (addr_rf_5).
+Driver 1: output signal addr_rf_5[0] of instance Flip-flop (_i000018).
+Driver 0: output signal addr_dm_5[4] of instance Flip-flop (addr_dm_5).
+Driver 1: output signal addr_dm_5[4] of instance Flip-flop (_i000012).
+Driver 0: output signal addr_dm_5[3] of instance Flip-flop (addr_dm_5).
+Driver 1: output signal addr_dm_5[3] of instance Flip-flop (_i000012).
+Driver 0: output signal addr_dm_5[2] of instance Flip-flop (addr_dm_5).
+Driver 1: output signal addr_dm_5[2] of instance Flip-flop (_i000012).
+Driver 0: output signal addr_dm_5[1] of instance Flip-flop (addr_dm_5).
+Driver 1: output signal addr_dm_5[1] of instance Flip-flop (_i000012).
+Driver 0: output signal addr_dm_5[0] of instance Flip-flop (addr_dm_5).
+Driver 1: output signal addr_dm_5[0] of instance Flip-flop (_i000012).
+Driver 0: output signal data_out_32[31] of instance Latch (data_out_32[31]).
+Driver 1: output signal data_out_32[31] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[31] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[30] of instance Latch (data_out_32[30]).
+Driver 1: output signal data_out_32[30] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[30] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[29] of instance Latch (data_out_32[29]).
+Driver 1: output signal data_out_32[29] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[29] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[28] of instance Latch (data_out_32[28]).
+Driver 1: output signal data_out_32[28] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[28] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[27] of instance Latch (data_out_32[27]).
+Driver 1: output signal data_out_32[27] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[27] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[26] of instance Latch (data_out_32[26]).
+Driver 1: output signal data_out_32[26] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[26] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[25] of instance Latch (data_out_32[25]).
+Driver 1: output signal data_out_32[25] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[25] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[24] of instance Latch (data_out_32[24]).
+Driver 1: output signal data_out_32[24] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[24] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[23] of instance Latch (data_out_32[23]).
+Driver 1: output signal data_out_32[23] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[23] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[22] of instance Latch (data_out_32[22]).
+Driver 1: output signal data_out_32[22] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[22] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[21] of instance Latch (data_out_32[21]).
+Driver 1: output signal data_out_32[21] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[21] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[20] of instance Latch (data_out_32[20]).
+Driver 1: output signal data_out_32[20] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[20] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[19] of instance Latch (data_out_32[19]).
+Driver 1: output signal data_out_32[19] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[19] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[18] of instance Latch (data_out_32[18]).
+Driver 1: output signal data_out_32[18] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[18] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[17] of instance Latch (data_out_32[17]).
+Driver 1: output signal data_out_32[17] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[17] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[16] of instance Latch (data_out_32[16]).
+Driver 1: output signal data_out_32[16] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[16] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[15] of instance Latch (data_out_32[15]).
+Driver 1: output signal data_out_32[15] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[15] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[14] of instance Latch (data_out_32[14]).
+Driver 1: output signal data_out_32[14] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[14] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[13] of instance Latch (data_out_32[13]).
+Driver 1: output signal data_out_32[13] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[13] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[12] of instance Latch (data_out_32[12]).
+Driver 1: output signal data_out_32[12] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[12] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[11] of instance Latch (data_out_32[11]).
+Driver 1: output signal data_out_32[11] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[11] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[10] of instance Latch (data_out_32[10]).
+Driver 1: output signal data_out_32[10] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[10] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[9] of instance Latch (data_out_32[9]).
+Driver 1: output signal data_out_32[9] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[9] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[8] of instance Latch (data_out_32[8]).
+Driver 1: output signal data_out_32[8] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[8] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[7] of instance Latch (data_out_32[7]).
+Driver 1: output signal data_out_32[7] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[7] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[6] of instance Latch (data_out_32[6]).
+Driver 1: output signal data_out_32[6] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[6] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[5] of instance Latch (data_out_32[5]).
+Driver 1: output signal data_out_32[5] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[5] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[4] of instance Latch (data_out_32[4]).
+Driver 1: output signal data_out_32[4] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[4] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[3] of instance Latch (data_out_32[3]).
+Driver 1: output signal data_out_32[3] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[3] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[2] of instance Latch (data_out_32[2]).
+Driver 1: output signal data_out_32[2] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[2] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[1] of instance Latch (data_out_32[1]).
+Driver 1: output signal data_out_32[1] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[1] of instance Flip-flop (_i000015).
+Driver 0: output signal data_out_32[0] of instance Latch (data_out_32[0]).
+Driver 1: output signal data_out_32[0] of instance Flip-flop (data_out_32).
+Driver 2: output signal data_out_32[0] of instance Flip-flop (_i000015).
+Driver 0: output signal data_rdy of instance Latch (data_rdy).
+Driver 1: output signal data_rdy of instance Latch (_i000035).
+Driver 2: output signal data_rdy of instance Flip-Flop (_i000030).
+Driver 3: output signal data_rdy of instance Flip-Flop (_i000016).
+ERROR:HDLCompiler:1401 - "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\sort_address.v" Line 91: Signal wait_cnt[2] in unit address_multiplexer is connected to following multiple drivers:
+Driver 0: output signal wait_cnt[2] of instance Latch (wait_cnt[2]).
+Driver 1: output signal wait_cnt[2] of instance Latch (_i000036).
+Driver 0: output signal wait_cnt[1] of instance Latch (wait_cnt[1]).
+Driver 1: output signal wait_cnt[1] of instance Latch (_i000037).
+Driver 0: output signal wait_cnt[0] of instance Latch (wait_cnt[0]).
+Driver 1: output signal wait_cnt[0] of instance Latch (_i000038).
+Driver 0: output signal read_wait of instance Latch (read_wait).
+Driver 1: output signal read_wait of instance Flip-Flop (_i000029).
+Driver 2: output signal read_wait of instance Flip-Flop (_i000013).
+Module address_multiplexer remains a blackbox, due to errors in its contents
+WARNING:HDLCompiler:1499 - "C:\Users\HRUSHIKESH\Desktop\proj\sortAddr_32To8_uart2\sort_address.v" Line 1: Empty module <address_multiplexer> remains a black box.
+--> 
+
+Total memory usage is 4482536 kilobytes
+
+Number of errors   :    4 (   0 filtered)
+Number of warnings :   23 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
+

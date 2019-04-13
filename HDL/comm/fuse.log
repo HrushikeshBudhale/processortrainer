@@ -1,0 +1,25 @@
+Running: C:\Xilinx\14.2\ISE_DS\ISE\bin\nt64\unwrapped\fuse.exe -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -lib secureip -o C:/Users/HRUSHIKESH/Desktop/proj/comm/UART_tb_isim_beh.exe -prj C:/Users/HRUSHIKESH/Desktop/proj/comm/UART_tb_beh.prj work.UART_tb work.glbl 
+ISim P.28xd (signature 0xa0883be4)
+Number of CPUs detected in this system: 4
+Turning on mult-threading, number of parallel sub-compilation jobs: 8 
+Determining compilation order of HDL files
+Analyzing Verilog file "C:/Users/HRUSHIKESH/Desktop/proj/comm/UART_tx.v" into library work
+Analyzing Verilog file "C:/Users/HRUSHIKESH/Desktop/proj/comm/UART_rx.v" into library work
+Analyzing Verilog file "C:/Users/HRUSHIKESH/Desktop/proj/comm/UART_baudrate_generator.v" into library work
+Analyzing Verilog file "C:/Users/HRUSHIKESH/Desktop/proj/comm/TOP.v" into library work
+Analyzing Verilog file "C:/Users/HRUSHIKESH/Desktop/proj/comm/UART_tb.v" into library work
+Analyzing Verilog file "C:/Xilinx/14.2/ISE_DS/ISE//verilog/src/glbl.v" into library work
+Starting static elaboration
+Completed static elaboration
+Compiling module UART_rs232_rx
+Compiling module UART_rs232_tx
+Compiling module UART_BaudRate_generator
+Compiling module TOP
+Compiling module UART_tb
+Compiling module glbl
+Time Resolution for simulation is 1ps.
+Waiting for 1 sub-compilation(s) to finish...
+Compiled 6 Verilog Units
+Built simulation executable C:/Users/HRUSHIKESH/Desktop/proj/comm/UART_tb_isim_beh.exe
+Fuse Memory Usage: 27700 KB
+Fuse CPU Usage: 437 ms

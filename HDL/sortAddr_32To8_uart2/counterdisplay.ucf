@@ -1,0 +1,4 @@
+NET "Clk" LOC = L15;
+NET "Rst_n" LOC = T15;
+NET "Tx" LOC = B16;//T3; # Bank = 0, Pin name = IO_L66P_SCP1, Sch name = USBB-TXD
+NET "Rx" LOC = A16;

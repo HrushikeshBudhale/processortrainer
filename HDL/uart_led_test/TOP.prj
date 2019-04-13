@@ -1,0 +1,5 @@
+verilog work "UART_tx.v"
+verilog work "UART_rx.v"
+verilog work "UART_baudrate_generator.v"
+verilog work "led_to_8bit.v"
+verilog work "TOP.v"

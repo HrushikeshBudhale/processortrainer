@@ -1,0 +1,7 @@
+verilog isim_temp "Verilog/REGFILE.v"
+verilog isim_temp "Verilog/PC.v"
+verilog isim_temp "Verilog/MUX.v"
+verilog isim_temp "Verilog/Beta_CTL.v"
+verilog isim_temp "Verilog/Beata_ALU.v"
+verilog isim_temp "Verilog/BETA_top.v"
+verilog isim_temp "C:/Xilinx/14.2/ISE_DS/ISE//verilog/src/glbl.v"

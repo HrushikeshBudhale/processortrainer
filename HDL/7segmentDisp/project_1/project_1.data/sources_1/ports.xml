@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<Interface Version="1" Minor="1">
+	<Ifc Id="ROOT" Top="1">
+		<Port Id="clk" Dir="IN"/>
+		<Port Id="n_reset" Dir="IN"/>
+		<Port Id="button_in" Dir="IN"/>
+		<Port Id="leda" Dir="OUT"/>
+		<Port Id="ledb" Dir="OUT"/>
+		<Port Id="ledc" Dir="OUT"/>
+		<Port Id="ledd" Dir="OUT"/>
+		<Port Id="lede" Dir="OUT"/>
+		<Port Id="ledf" Dir="OUT"/>
+		<Port Id="ledg" Dir="OUT"/>
+	</Ifc>
+</Interface>
+

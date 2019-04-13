@@ -1,0 +1,13 @@
+xst -intstyle ise -filter "E:/EPD2FINAL/BETA_PROCESSOR_V2/iseconfig/filter.filter" -ifn "E:/EPD2FINAL/BETA_PROCESSOR_V2/Beta_MEM.xst" -ofn "E:/EPD2FINAL/BETA_PROCESSOR_V2/Beta_MEM.syr" 
+ngdbuild -filter "iseconfig/filter.filter" -intstyle ise -dd _ngo -nt timestamp -i -p xc6slx45-fgg484-3 Beta_MEM.ngc Beta_MEM.ngd  
+map -filter "E:/EPD2FINAL/BETA_PROCESSOR_V2/iseconfig/filter.filter" -intstyle ise -p xc6slx45-fgg484-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o Beta_MEM_map.ncd Beta_MEM.ngd Beta_MEM.pcf 
+par -filter "E:/EPD2FINAL/BETA_PROCESSOR_V2/iseconfig/filter.filter" -w -intstyle ise -ol high -mt off Beta_MEM_map.ncd Beta_MEM.ncd Beta_MEM.pcf 
+trce -filter E:/EPD2FINAL/BETA_PROCESSOR_V2/iseconfig/filter.filter -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml Beta_MEM.twx Beta_MEM.ncd -o Beta_MEM.twr Beta_MEM.pcf 
+bitgen -filter "iseconfig/filter.filter" -intstyle ise -f Beta_MEM.ut Beta_MEM.ncd 
+xst -intstyle ise -filter "D:/V3/BETA_PROCESSOR_V2/iseconfig/filter.filter" -ifn "D:/V3/BETA_PROCESSOR_V2/Beta_MEM.xst" -ofn "D:/V3/BETA_PROCESSOR_V2/Beta_MEM.syr" 
+xst -intstyle ise -filter "C:/Users/HRUSHIKESH/Desktop/EPD2/V3.1/BETA_PROCESSOR_V2/iseconfig/filter.filter" -ifn "C:/Users/HRUSHIKESH/Desktop/EPD2/V3.1/BETA_PROCESSOR_V2/Beta_MEM.xst" -ofn "C:/Users/HRUSHIKESH/Desktop/EPD2/V3.1/BETA_PROCESSOR_V2/Beta_MEM.syr" 
+ngdbuild -filter "iseconfig/filter.filter" -intstyle ise -dd _ngo -nt timestamp -i -p xc6slx45-fgg484-3 Beta_MEM.ngc Beta_MEM.ngd  
+map -filter "C:/Users/HRUSHIKESH/Desktop/EPD2/V3.1/BETA_PROCESSOR_V2/iseconfig/filter.filter" -intstyle ise -p xc6slx45-fgg484-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o Beta_MEM_map.ncd Beta_MEM.ngd Beta_MEM.pcf 
+par -filter "C:/Users/HRUSHIKESH/Desktop/EPD2/V3.1/BETA_PROCESSOR_V2/iseconfig/filter.filter" -w -intstyle ise -ol high -mt off Beta_MEM_map.ncd Beta_MEM.ncd Beta_MEM.pcf 
+trce -filter C:/Users/HRUSHIKESH/Desktop/EPD2/V3.1/BETA_PROCESSOR_V2/iseconfig/filter.filter -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml Beta_MEM.twx Beta_MEM.ncd -o Beta_MEM.twr Beta_MEM.pcf 
+bitgen -filter "iseconfig/filter.filter" -intstyle ise -f Beta_MEM.ut Beta_MEM.ncd 

@@ -1,0 +1,3 @@
+verilog isim_temp "sort_address.v"
+verilog isim_temp "addr_mux_tb.v"
+verilog isim_temp "C:/Xilinx/14.2/ISE_DS/ISE//verilog/src/glbl.v"

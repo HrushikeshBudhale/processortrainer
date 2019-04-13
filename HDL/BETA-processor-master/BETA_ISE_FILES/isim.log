@@ -1,0 +1,27 @@
+ISim log file
+Running: C:\Users\HRUSHIKESH\Desktop\proj\BETA-processor-master\BETA_ISE_FILES\TB_BETA_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb C:/Users/HRUSHIKESH/Desktop/proj/BETA-processor-master/BETA_ISE_FILES/TB_BETA_isim_beh.wdb 
+ISim P.28xd (signature 0xa0883be4)
+This is a Full version of ISim.
+WARNING: For instance uut/data_mem/, width 10 of formal port dpra is not equal to width 11 of actual.
+WARNING: For instance uut/instruct_mem/, width 10 of formal port dpra is not equal to width 11 of actual.
+Time resolution is 1 ps
+# onerror resume
+# wave add /
+# run 1000 ns
+Simulator is doing circuit initialization process.
+WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
+WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
+WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
+WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
+Finished circuit initialization process.
+# restart
+# run 10.00us
+Simulator is doing circuit initialization process.
+WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
+WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
+WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
+WARNING: This core is supplied with a behavioral model. To model cycle-accurate behavior you must run timing simulation.
+Finished circuit initialization process.
+TEST OK
+
+Passed

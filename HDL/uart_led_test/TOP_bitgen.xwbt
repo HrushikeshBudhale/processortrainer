@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=C:\Users\HRUSHIKESH\Desktop\proj\uart_led_test\TOP.ncd
+OUTFILE=C:\Users\HRUSHIKESH\Desktop\proj\uart_led_test\TOP.bit
+FAMILY=Spartan6
+PART=xc6slx45-3csg324
+WORKINGDIR=C:\Users\HRUSHIKESH\Desktop\proj\uart_led_test
+LICENSE=WebPack
+USER_INFO=__0_0_0

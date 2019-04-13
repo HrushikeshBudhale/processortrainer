@@ -1,0 +1,28 @@
+Command line:
+   UART_rs232_tx_isim_beh.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  49991
+
+Thu Feb 07 12:37:06 2019
+
+
+ Elaboration Time: 0.046875 sec
+
+ Current Memory Usage: 5324.82 Meg
+
+ Total Signals          : 20
+ Total Nets             : 32
+ Total Signal Drivers   : 8
+ Total Blocks           : 2
+ Total Primitive Blocks : 2
+ Total Processes        : 15
+ Total Traceable Variables  : 31
+ Total Scalar Nets and Variables : 140
+
+ Total Simulation Time: 0.0625 sec
+
+ Current Memory Usage: 5324.82 Meg
+
+Thu Feb 07 12:37:14 2019
+

@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "C:/Users/HRUSHIKESH/Desktop/proj/V3.1/BETA_PROCESSOR_V2/TBfinal_isim_beh.exe" -prj "C:/Users/HRUSHIKESH/Desktop/proj/V3.1/BETA_PROCESSOR_V2/TBfinal_beh.prj" "work.TBfinal" "work.glbl" 
