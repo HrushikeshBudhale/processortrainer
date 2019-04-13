@@ -1,12 +1,18 @@
 #define SAMPLE_TIME 200000 // 0.2 sec
 // #define DEVICES 4
 #define EXT_CLK 1
-#define CLKPIN 1
-#define MODEPIN 2
-#define FREQPIN 36
+#define CLKPIN 4	// P4
+#define MODEPIN 16  // P16
+#define FREQPIN 36  // SVP
 #define PROG_LEN 20 // Program memory size
 
 long int clkDelay = 500000;
+
+unsigned long buttonTime;
+unsigned long last_buttonTime;
+
+unsigned long modeTime;
+unsigned long last_modeTime;
 
 char inString[] = "FFFFFFFF\0"; // char array to hold incoming data
 char bufPos = 0;				// holds index of char in inString
@@ -27,9 +33,10 @@ unsigned long int prog_data[PROG_LEN]; // 32 bit
 void setup()
 {
 	Serial.begin(115200);
-
+	delay(5000);
 	setInterrupts();
 	setTimers();
+	clearProg();
 }
 
 void loop()
@@ -75,7 +82,7 @@ void onSampleTimer()
 
 void onEvaluateTimer()
 {
-	if (doneUpload && clkMode != EXT_CLK)
+	if (doneUpload && (clkMode != EXT_CLK))
 	{
 		// evaluate();
 		Serial.println("freq eval");
@@ -96,31 +103,45 @@ void setInterrupts()
 	// check initial toggle position
 	pinMode(MODEPIN, INPUT);
 	clkMode = digitalRead(MODEPIN);
+	if (clkMode)
+		Serial.println("Mode: ext_clk");
+	else
+		Serial.println("Mode: internal");
 	// attach change sensitive interrupt to mode pin
 	pinMode(MODEPIN, INPUT_PULLUP);
 	attachInterrupt(digitalPinToInterrupt(MODEPIN), changeMode, CHANGE);
 
 	// interrupt at rising edge of clkpin
 	pinMode(CLKPIN, INPUT_PULLUP);
-	attachInterrupt(digitalPinToInterrupt(CLKPIN), buttonISR, RISING);
+	attachInterrupt(digitalPinToInterrupt(CLKPIN), buttonISR, FALLING);
 	Serial.println("in setInterrupt");
 }
 
 // ISR to chage clock type (internal or external)
 void changeMode()
 {
-	clkMode = !clkMode;
-	Serial.println("changeMode");
+	modeTime = millis();
+	if (modeTime - last_modeTime > 250)
+	{
+		clkMode = !clkMode;
+		Serial.println("changeMode");
+		last_modeTime = modeTime;
+	}
 }
 
 // ISR to run function at button press
 void buttonISR()
 {
-	Serial.println("buttonISR");
-	if (doneUpload && clkMode == EXT_CLK)
+	buttonTime = millis();
+	if (buttonTime - last_buttonTime > 250)
 	{
-		// evaluate();
-		Serial.println("button eval");
+		Serial.println("buttonISR");
+		if (doneUpload && clkMode == EXT_CLK)
+		{
+			// evaluate();
+			Serial.println("button eval");
+		}
+		last_buttonTime = buttonTime;
 	}
 }
 
@@ -135,6 +156,7 @@ void handleSerial()
 		{
 		case 'u': // starting to upload new code
 			Serial.println("Starting Upload");
+			clearProg();
 			doneUpload = false;
 			break;
 
@@ -188,15 +210,21 @@ void handleSerial()
 	// todo: reset mem and reg
 } */
 
+void clearProg()
+{
+	for (int i = 0; i < PROG_LEN; i++)
+		prog_data[i] = 0;
+}
+
 // testing function
 void displayProgram()
 {
 	for (int j = 0; j < 4; j++)
 	{
-		for (int i = 0; i < 8; i++)
+		for (int i = 0; i < 5; i++)
 		{
 			Serial.print("\t");
-			Serial.print(prog_data[i + (j * 8)]);
+			Serial.print(prog_data[i + (j * 5)]);
 		}
 		Serial.println();
 	}
