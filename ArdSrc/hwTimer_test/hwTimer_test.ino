@@ -7,7 +7,7 @@ void onTimer()
 	Serial.print(millis());
 	Serial.println(" ms");
 
-	if (counter == 30)
+	if (counter == 10)
 		endTimer();
 
 	counter++;
