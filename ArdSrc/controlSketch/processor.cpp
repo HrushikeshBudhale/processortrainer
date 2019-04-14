@@ -44,6 +44,30 @@ typedef void (*fuctionPtr)(void);
 fuctionPtr funcLookupTbl[40]; // Stores array of pointers to all functions
 
 // ===================== Process realated functions ======================
+// ! for testing only
+void printMems(void)
+{
+    Serial.println("Register file: @@@@@@@@@@@");
+    for (int j = 0; j < 4; j++)
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            Serial.print("\t");
+            Serial.print(reg_file[i + (j * 8)]);
+        }
+        Serial.println();
+    }
+    Serial.println("Data memory: @@@@@@@@@@@");
+    for (int j = 0; j < 4; j++)
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            Serial.print("\t");
+            Serial.print(data_mem[i + (j * 5)]);
+        }
+        Serial.println();
+    }
+}
 
 void evaluate(void)
 {

@@ -14,6 +14,9 @@ void decode(void);
 void execute(void);
 void reset(void);
 
+// for testing
+void printMems(void);
+
 // Process functions
 void ADD(void);
 void ADDC(void);

@@ -180,6 +180,10 @@ void handleSerial()
             }
             break;
 
+        case 'p': // ! for testing only
+            printMems();
+            break;
+
         case 'r': // Reset memories
             Serial.println("Resetting");
             reset();
