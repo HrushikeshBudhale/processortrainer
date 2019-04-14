@@ -22,7 +22,7 @@ def createJSON(Rstr):
 
 try:
     ser = serial.Serial(port='com5', baudrate=115200)
-    time.sleep(2)
+    time.sleep(1)
     ser.read_all()
     ser.flush()
 
@@ -32,21 +32,7 @@ try:
             s = ser.readline().decode()
             createJSON(s)
 
-except TypeError as e:
-    # Disconnect of USB->UART occured
+except:
     ser.close()
     print("Disconnected !!!")
-
-except KeyboardInterrupt:
-    ser.close()
     print("Port closed")
-
-except e:
-    print(e)
-    ser.close()
-    # dataIn = self.port.read()
-# except serial.SerialException as e:
-#     # There is no new data from serial port
-# else:
-#     # Some data was received
-#     return dataIn
