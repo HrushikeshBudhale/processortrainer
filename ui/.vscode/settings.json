@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "C:\\Users\\HRUSHIKESH\\Anaconda3\\envs\\tf_gpu\\python.exe",
+    "python.pythonPath": "C:\\Python36\\python.exe",
     "python.dataScience.jupyterServerURI": "local",
     "C_Cpp.errorSquiggles": "Enabled"
 }
