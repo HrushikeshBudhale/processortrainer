@@ -13,6 +13,7 @@ void fetch(void);
 void decode(void);
 void execute(void);
 void reset(void);
+void sendTx(void);
 
 // for testing
 void printMems(void);

@@ -22,6 +22,8 @@
 // State variables
 extern boolean doneUpload; // ! External variable
 unsigned long int cntlOp;
+boolean isTypeSTR = false; // Required because only STORE sends memory addr.
+String outString;          // a String to hold outgoing data
 
 // Data Containers
 unsigned long int prog_data[PROG_LEN]; // 32 bit
@@ -76,44 +78,46 @@ void evaluate(void)
         fetch();
         decode();
         execute();
+        sendTx();
     }
-    Serial.println("====================================================");
+    //Serial.println("====================================================");
 }
 
 void fetch(void)
 {
-    Serial.println("In fetch");
+    //Serial.println("In fetch");
     opcode = (prog_data[PC] >> 26);      // bits 31 - 26
     Rc = ((prog_data[PC] >> 21) & 0x1f); // bits 25 - 21
     Ra = ((prog_data[PC] >> 16) & 0x1f); // bits 20 - 16
     Rb = ((prog_data[PC] >> 11) & 0x1f); // bits 15 - 11
     literal = (prog_data[PC] & 0xffff);  // bits 15 - 0
-    Serial.print("opcode= ");
-    Serial.print(opcode);
-    Serial.print(", Rc= ");
-    Serial.print(Rc);
-    Serial.print(", Ra= ");
-    Serial.print(Ra);
-    Serial.print(", Rb= ");
-    Serial.print(Rb);
-    Serial.print(", literal= ");
-    Serial.println(literal);
+    //Serial.print("opcode= ");
+    //Serial.print(opcode);
+    //Serial.print(", Rc= ");
+    //Serial.print(Rc);
+    //Serial.print(", Ra= ");
+    //Serial.print(Ra);
+    //Serial.print(", Rb= ");
+    //Serial.print(Rb);
+    //Serial.print(", literal= ");
+    //Serial.println(literal);
 }
 
 void decode(void)
 {
-    Serial.println("In decode");
+    //Serial.println("In decode");
+    isTypeSTR = false;
     char code = opcode - 24;
     if (code > 7 && code < 24)
     {
         // OP
-        Serial.println("cntl type OP");
+        //Serial.println("cntl type OP");
         cntlOp = ((opcode << ALUFN) || (1 << WERF) || (1 << WDSEL));
     }
     else if (code > 23 && code < 40)
     {
         // OPC
-        Serial.println("cntl type OPC");
+        //Serial.println("cntl type OPC");
         cntlOp = ((opcode << ALUFN) || (1 << WERF) || (1 << BSEL) || (1 << WDSEL));
     }
     else
@@ -122,22 +126,23 @@ void decode(void)
         {
         case 0:
             // LD
-            Serial.println("cntl type LD");
+            //Serial.println("cntl type LD");
             cntlOp = ((8 << ALUFN) || (1 << WERF) || (1 << BSEL) || (2 << WDSEL));
             break;
         case 1:
             // ST
-            Serial.println("cntl type ST");
+            isTypeSTR = true;
+            //Serial.println("cntl type ST");
             cntlOp = ((8 << ALUFN) || (1 << BSEL) || (1 << WR) || (1 << RA2SEL));
             break;
         case 3:
             // JMP
-            Serial.println("cntl type JMP");
+            //Serial.println("cntl type JMP");
             cntlOp = ((1 << WERF) || (2 << PCSEL));
             break;
         case 5:
             // BEQ
-            Serial.println("cntl type BEQ");
+            //Serial.println("cntl type BEQ");
             if (z)
                 cntlOp = ((1 << WERF) || (1 << PCSEL));
             else
@@ -145,7 +150,7 @@ void decode(void)
             break;
         case 6:
             // BNE
-            Serial.println("cntl type BNE");
+            //Serial.println("cntl type BNE");
             if (z)
                 cntlOp = ((1 << WERF) || (0 << PCSEL));
             else
@@ -153,12 +158,12 @@ void decode(void)
             break;
         case 7:
             // LDR
-            Serial.println("cntl type LDR");
+            //Serial.println("cntl type LDR");
             cntlOp = ((1 << WERF) || (2 << WDSEL) || (1 << ASEL));
             break;
         default:
             // Illop
-            Serial.println("cntl type Illop");
+            //Serial.println("cntl type Illop");
             cntlOp = ((1 << WERF) || (4 << PCSEL) || (1 << WASEL));
             break;
         }
@@ -167,8 +172,24 @@ void decode(void)
 
 void execute(void)
 {
-    Serial.println("In execute");
+    //Serial.println("In execute");
     funcLookupTbl[opcode - 24](); // opcode starts from 24
+}
+
+void sendTx(void)
+{
+    outString = String(PC) + " ";
+    if (isTypeSTR)
+    {
+        outString += ": " + String(reg_file[Ra] + literal);
+        outString += ":" + String(reg_file[Rc]);
+    }
+    else
+    {
+        outString += String(Rc) + ":";
+        outString += String(reg_file[Rc]) + " :";
+    }
+    Serial.println(outString);
 }
 
 void reset(void)
@@ -189,35 +210,35 @@ void reset(void)
 void ADD(void)
 {
     // Check what gives error and apply to rest
-    Serial.println("Executing ADD");
+    //Serial.println("Executing ADD");
     reg_file[Rc] = (unsigned int)(reg_file[Ra] + reg_file[Rb]);
     PC += 1;
 }
 
 void ADDC(void)
 {
-    Serial.println("Executing ADDC");
+    //Serial.println("Executing ADDC");
     reg_file[Rc] = reg_file[Ra] + literal;
     PC += 1;
 }
 
 void AND(void)
 {
-    Serial.println("Executing AND");
+    //Serial.println("Executing AND");
     reg_file[Rc] = reg_file[Ra] & reg_file[Rb];
     PC += 1;
 }
 
 void ANDC(void)
 {
-    Serial.println("Executing ANDC");
+    //Serial.println("Executing ANDC");
     reg_file[Rc] = reg_file[Ra] & literal;
     PC += 1;
 }
 
 void BEQ(void)
 {
-    Serial.println("Executing BEQ");
+    //Serial.println("Executing BEQ");
     PC += 1;
     reg_file[Rc] = PC;
     if (reg_file[Ra] == 0)
@@ -226,7 +247,7 @@ void BEQ(void)
 
 void BNE(void)
 {
-    Serial.println("Executing BNE");
+    //Serial.println("Executing BNE");
     PC += 1;
     reg_file[Rc] = PC;
     if (reg_file[Ra] != 0)
@@ -235,7 +256,7 @@ void BNE(void)
 
 void CMPEQ(void)
 {
-    Serial.println("Executing CMPEQ");
+    //Serial.println("Executing CMPEQ");
     PC += 1;
     if (reg_file[Ra] == reg_file[Rb])
         reg_file[Rc] = 1;
@@ -245,7 +266,7 @@ void CMPEQ(void)
 
 void CMPEQC(void)
 {
-    Serial.println("Executing CMPEQC");
+    //Serial.println("Executing CMPEQC");
     PC += 1;
     if (reg_file[Ra] == literal)
         reg_file[Rc] = 1;
@@ -255,7 +276,7 @@ void CMPEQC(void)
 
 void CMPLE(void)
 {
-    Serial.println("Executing CMPLE");
+    //Serial.println("Executing CMPLE");
     PC += 1;
     if (reg_file[Ra] <= reg_file[Rb])
         reg_file[Rc] = 1;
@@ -265,7 +286,7 @@ void CMPLE(void)
 
 void CMPLEC(void)
 {
-    Serial.println("Executing CMPLEC");
+    //Serial.println("Executing CMPLEC");
     PC += 1;
     if (reg_file[Ra] <= literal)
         reg_file[Rc] = 1;
@@ -275,7 +296,7 @@ void CMPLEC(void)
 
 void CMPLT(void)
 {
-    Serial.println("Executing CMPLT");
+    //Serial.println("Executing CMPLT");
     PC += 1;
     if (reg_file[Ra] < reg_file[Rb])
         reg_file[Rc] = 1;
@@ -285,7 +306,7 @@ void CMPLT(void)
 
 void CMPLTC(void)
 {
-    Serial.println("Executing CMPLTC");
+    //Serial.println("Executing CMPLTC");
     PC += 1;
     if (reg_file[Ra] < literal)
         reg_file[Rc] = 1;
@@ -295,21 +316,21 @@ void CMPLTC(void)
 
 void DIV(void)
 {
-    Serial.println("Executing DIV");
+    //Serial.println("Executing DIV");
     reg_file[Rc] = reg_file[Ra] / reg_file[Rb];
     PC += 1;
 }
 
 void DIVC(void)
 {
-    Serial.println("Executing DIVC");
+    //Serial.println("Executing DIVC");
     reg_file[Rc] = reg_file[Ra] / literal;
     PC += 1;
 }
 
 void JMP(void)
 {
-    Serial.println("Executing JMP");
+    //Serial.println("Executing JMP");
     PC += 1;
     reg_file[Rc] = PC;
     PC = reg_file[Ra] & 0xfffffffc;
@@ -317,70 +338,70 @@ void JMP(void)
 
 void LD(void)
 {
-    Serial.println("Executing LD");
+    //Serial.println("Executing LD");
     PC += 1;
     reg_file[Rc] = data_mem[reg_file[Ra] + literal];
 }
 
 void LDR(void)
 {
-    Serial.println("Executing LDR");
+    //Serial.println("Executing LDR");
     PC += 1;
     reg_file[Rc] = data_mem[PC + literal];
 }
 
 void MUL(void)
 {
-    Serial.println("Executing MUL");
+    //Serial.println("Executing MUL");
     reg_file[Rc] = reg_file[Ra] * reg_file[Rb];
     PC += 1;
 }
 
 void MULC(void)
 {
-    Serial.println("Executing MULC");
+    //Serial.println("Executing MULC");
     reg_file[Rc] = reg_file[Ra] * literal;
     PC += 1;
 }
 
 void OR(void)
 {
-    Serial.println("Executing OR");
+    //Serial.println("Executing OR");
     reg_file[Rc] = reg_file[Ra] | reg_file[Rb];
     PC += 1;
 }
 
 void ORC(void)
 {
-    Serial.println("Executing ORC");
+    //Serial.println("Executing ORC");
     reg_file[Rc] = reg_file[Ra] | literal;
     PC += 1;
 }
 
 void SHL(void)
 {
-    Serial.println("Executing SHL");
+    //Serial.println("Executing SHL");
     reg_file[Rc] = reg_file[Ra] << reg_file[Rb];
     PC += 1;
 }
 
 void SHLC(void)
 {
-    Serial.println("Executing SHLC");
+    //Serial.println("Executing SHLC");
     reg_file[Rc] = reg_file[Ra] << (literal & 0x1f);
     PC += 1;
 }
 
 void SHR(void)
 {
-    Serial.println("Executing SHR");
+    //Serial.println("Executing SHR");
     reg_file[Rc] = reg_file[Ra] >> reg_file[Rb];
     PC += 1;
 }
 
 void SHRC(void)
 {
-    Serial.println("Executing SHRC");
+    //Serial.println("Executing SHRC");
     reg_file[Rc] = reg_file[Ra] >> (literal & 0x1f);
     PC += 1;
 }
@@ -388,62 +409,62 @@ void SHRC(void)
 void SRA(void)
 { // Get Exact difference from above func.
     // Propagating sign bits to left (how to do it)
-    Serial.println("Executing SRA");
+    //Serial.println("Executing SRA");
     reg_file[Rc] = reg_file[Ra] >> reg_file[Rb];
     PC += 1;
 }
 
 void SRAC(void)
 {
-    Serial.println("Executing SRAC");
+    //Serial.println("Executing SRAC");
     reg_file[Rc] = reg_file[Ra] >> (literal & 0x1f);
     PC += 1;
 }
 
 void ST(void)
 {
-    Serial.println("Executing ST");
+    //Serial.println("Executing ST");
     PC += 1;
     data_mem[reg_file[Ra] + literal] = reg_file[Rc];
 }
 
 void SUB(void)
 {
-    Serial.println("Executing SUB");
+    //Serial.println("Executing SUB");
     reg_file[Rc] = reg_file[Ra] - reg_file[Rb];
     PC += 1;
 }
 
 void SUBC(void)
 {
-    Serial.println("Executing SUBC");
+    //Serial.println("Executing SUBC");
     reg_file[Rc] = reg_file[Ra] - literal;
     PC += 1;
 }
 
 void XOR(void)
 {
-    Serial.println("Executing XOR");
+    //Serial.println("Executing XOR");
     reg_file[Rc] = reg_file[Ra] ^ reg_file[Rb];
     PC += 1;
 }
 
 void XORC(void)
 {
-    Serial.println("Executing XORC");
+    //Serial.println("Executing XORC");
     reg_file[Rc] = reg_file[Ra] ^ literal;
     PC += 1;
 }
 
 void NOPE()
 {
-    Serial.println("Executing NOPE");
+    //Serial.println("Executing NOPE");
     // Place holder
 }
 
 void initLookupTbl(void)
 {
-    Serial.println("Lookup table initialised!");
+    //Serial.println("Lookup table initialised!");
     funcLookupTbl[0] = LD;
     funcLookupTbl[1] = ST;
     funcLookupTbl[2] = NOPE;

@@ -2,7 +2,7 @@
     "board": "esp32:esp32:esp32",
     "configuration": "PSRAM=disabled,PartitionScheme=default,CPUFreq=240,FlashMode=qio,FlashFreq=80,FlashSize=4M,UploadSpeed=921600,DebugLevel=none",
     "programmer": "AVRISP mkII",
-    "sketch": "transmit_test\\transmit_test.ino",
+    "sketch": "controlSketch\\controlSketch.ino",
     "port": "COM5",
     "output": "build"
 }
