@@ -20,19 +20,20 @@ def createJSON(Rstr):
     print(msg)
 
 
-try:
-    ser = serial.Serial(port='com5', baudrate=115200)
-    time.sleep(1)
-    ser.read_all()
-    ser.flush()
+# try:
+ser = serial.Serial(port='com5', baudrate=115200)
+print("Connected !!")
+time.sleep(3)
+ser.read_all()
+ser.flush()
+ser.write(b"77BF0002,77BF0001,77BF0000,C01F0001,C03F0001,88000800,C0210001,D8410005,7BA2FFFC,641F0004,77BFFFFF,d")
+while True:
+    time.sleep(0.1)
+    if (ser.inWaiting() > 0):
+        s = ser.readline().decode()
+        createJSON(s)
 
-    while True:
-        time.sleep(0.1)
-        if (ser.inWaiting() > 0):
-            s = ser.readline().decode()
-            createJSON(s)
-
-except:
-    ser.close()
-    print("Disconnected !!!")
-    print("Port closed")
+# except:
+#     ser.close()
+#     print("Disconnected !!!")
+#     print("Port closed")
