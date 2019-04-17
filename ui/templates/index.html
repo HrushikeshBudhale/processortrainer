@@ -12,48 +12,67 @@
 </head>
 
 <body style="background-color: gainsboro">
-  <nav class="navbar shadow navbar-light bg-warning">
-    <span id="tt" class="navbar-brand mb-0 h1">Processor control</span>
+
+  <nav class="navbar shadow navbar-light bg-warning navbar-expand-md">
+    <span class="navbar-brand mb-0 h1">Processor control</span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Examples
+          </a>
+          <div id="exampleList" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#">Example 3</a>
+          </div>
+        </li>
+      </ul>
+    </div>
   </nav>
+
   <div class="container" style="max-width: 90%;">
-    <div class="row p-2" style="height: 620px;">
-      <div class="col col-lg-2">
+    <div class="row p-2" style="height: auto;">
+      <div class="col-12 col-md-6 col-lg-3">
         <form method="POST" action="/upload">
-          <div class="row row-lg-11">
+          <div class="row row-lg-9">
             <div class="col mini-box">
               <div class="form-group mt-3">
                 <h5>Enter code</h5>
-                <textarea class="form-control shadow Acode" id="Textarea1" rows="16" style="max-height: 492px;"
+                <textarea class="form-control shadow Acode" id="Textarea1" rows="16" style="max-height: 350px;"
                   required></textarea>
               </div>
             </div>
           </div>
-          <div class="row-1">
+          <div class="row-3">
             <button type="submit" class="btn btn-primary btn-lg shadow btn-block">Upload</button>
-            <a id="resetBtn" class="btn btn-secondary btn-lg shadow btn-block mt-2" href="/reset"
-              role="button">Reset</a>
+            <!-- <a id="resetBtn" class="btn btn-secondary btn-lg shadow btn-block mt-2" href="/reset"
+              role="button">Reset</a> -->
+            <button id="resetBtn" class="btn btn-outline-secondary btn-lg shadow btn-block" type="button">Reset</button>
+            <a id="evalBtn" class="btn btn-success btn-lg shadow btn-block mt-2" href="/eval" role="button">Step</a>
           </div>
         </form>
       </div>
 
-      <div class="col col-lg-2 big-box mt-3">
+      <div class="col-12 col-md-6 col-lg-2 big-box mt-3">
         <h5>Program data</h5>
         <ul id="prog" class="list-group shadow text-center"
           style="max-height: 492px; margin-bottom: 10px; overflow:scroll; -webkit-overflow-scrolling: touch;">
-          {% for instr in instrList %}
-          <li class="list-group-item">{{ instr }}</li>
-          {% endfor %}
+          <li class="list-group-item">No code</li>
         </ul>
       </div>
 
-      <div class="col col-lg-8">
-        <div class="row h-50">
+      <div class="col-12 col-md-12 col-lg-7 mt-5">
+        <div class="row">
           <div class="col mini-box">
             <div class="card shadow text-white bg-dark w-100 mt-2">
               <div class="card-header">Register File</div>
               <div class="card-body">
                 <div class="table-responsive-lg">
-                  <table class="table table-striped text-center table-dark">
+                  <table class="table table-striped text-center table-dark table-sm">
                     <tbody id="reg">
                     </tbody>
                   </table>
@@ -62,7 +81,7 @@
             </div>
           </div>
         </div>
-        <div class="row h-50">
+        <div class="row mt-3">
           <div class="col">
             <div class="card shadow text-white bg-secondary mb-3 w-100 mt-3">
               <div class="card-header">Code Memory</div>
@@ -80,14 +99,13 @@
       </div>
     </div>
   </div>
+
   <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> -->
   <!-- socket io -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
-  <!-- <script src="js/bootstrap.min.js"></script> -->
   <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
   <script>
 
@@ -114,7 +132,9 @@
 
       // Request data update every 0.5 sec
       setInterval(function () {
-        socket.emit('getUpdate', '');
+        if (codeReady == true) {
+          socket.emit('getUpdate', '');
+        }
       }, 500);
 
       // broadcast a message
@@ -125,6 +145,23 @@
         socket.emit('connect_event', {
           data: "User Connected"
         });
+      });
+
+      // set list of examples in dropdown menu
+      socket.on('listData', function (content) {
+        $('#exampleList').html('');
+        content = JSON.parse(content);
+        $.each(content.list, function (i, val) {
+          $('#exampleList').append('<a class="dropdown-item" href="#">' + val + '</a>');
+        });
+      });
+
+      // update button name with example name and set example data in text area
+      $('#exampleList').on('click', 'a', function () {
+        $('#navbarDropdownMenuLink').text($(this).text());
+        event.preventDefault();
+        console.log($(this).index())
+        socket.emit('getExData', $(this).index());
       });
 
       var form = $('form').on('submit', function (event) {
@@ -139,7 +176,18 @@
       $('#resetBtn').on('click', function () {
         event.preventDefault();
         reset();
+        socket.emit('reset', '');
       });
+
+      // Execute next instrction
+      $('#evalBtn').on('click', function () {
+        event.preventDefault();
+        socket.emit('eval', '');
+      });
+
+      socket.on('exData', function (data) {
+        $('textarea.Acode').val(data).focus();
+      })
 
       // set program data on successful upload 
       socket.on('uploadStat', function (msg) {
@@ -149,6 +197,7 @@
         }
         else {
           alert("Code uploaded successfully.")
+          $('#prog').html('');
           msg = JSON.parse(msg);
           $.each(msg.program, function (i, val) {
             $('#prog').append('<li class="list-group-item">' + val + '</li>');
