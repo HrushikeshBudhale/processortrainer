@@ -124,10 +124,18 @@
         $('.myreg').append('<td>00000</td>');
         $('.mymem').append('<td>00000</td>');
       });
+
+      // Sets PC
+      // Disable previous active element
+      $('#prog').children('.active').toggleClass('active');
+      // Activate first elemet
+      $('#prog li').eq(0).addClass("active");
+
     };
 
     $(document).ready(function () {
-      var socket = io.connect('http://localhost:5000/')
+      // var socket = io.connect('http://192.168.43.17:5000/')
+      var socket = io.connect('http://{{ request.host }}/')
       var codeReady = false;
 
       // Request data update every 0.5 sec
