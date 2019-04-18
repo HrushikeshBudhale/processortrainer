@@ -26,7 +26,7 @@ exfile = []
 def tryToConnect():
     global ser
     try:
-        ser = serial.Serial(port='com5', baudrate=115200)
+        ser = serial.Serial(port='com8', baudrate=115200)
         time.sleep(3)
         ser.read_all()
         ser.flush()
@@ -163,5 +163,5 @@ def listen(msg):
 
 if __name__ == "__main__":
     # Start server
-    socketio.run(app, debug=True)
-    # socketio.run(app, debug=True, host='127.0.0.23', port=5000)
+    # socketio.run(app, debug=True)
+    socketio.run(app, debug=True, host='0.0.0.0', port=5000)
